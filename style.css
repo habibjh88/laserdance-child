@@ -1,0 +1,553 @@
+/* 
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme-child/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 2.0.1
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* Add your custom styles here */
+
+body {
+    background-image: url(assets/grey-texture-7-scaled.webp);
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+/*Pricing table*/
+/* --- Sicherer und überarbeiteter Code für Elementor --- */
+
+/* Farbvariablen */
+:root {
+    --ld-color-1: #C7FB4D;
+    --ld-color-2: #09C7FB;
+    --ld-bg: #0c0f13;
+    --ld-text: #f9f9f9;
+    --neon-border-width: 8px;
+}
+
+/* Hauptcontainer */
+body .ld-pricing {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 22px; /* Padding angepasst für Desktop */
+    color: var(--ld-text);
+    font-family: "Inter", system-ui, Segoe UI, Arial, sans-serif;
+}
+
+/* Neon-Rahmen (nur für Desktop) */
+body .ld-neon-border,
+body .ld-neon {
+    margin: 0;
+    position: relative;
+    padding: 28px;
+    background: var(--ld-bg);
+    z-index: 2;
+    border: var(--neon-border-width) solid transparent;
+    border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
+    border-image-slice: 1;
+}
+
+/* Neon-Leuchten (nur für Desktop) */
+body .ld-neon-border::before,
+body .ld-neon::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    inset: -20px; /* Robuste Positionierung */
+    border: 22px solid transparent;
+    border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
+    border-image-slice: 1;
+    filter: blur(15px);
+    opacity: 1; /* Sichtbar machen */
+    transition: opacity 0.3s; /* Sanfter Übergang */
+}
+
+/* Tabelle */
+body .ld-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    position: relative;
+    z-index: 3;
+}
+
+body .ld-table thead th {
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    opacity: .9;
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+body .ld-table thead th.ld-col-right {
+    text-align:right;
+}
+
+body .ld-table td {
+    padding: 14px 16px;
+    border-bottom: 1px dashed rgba(255, 255, 255, .12);
+}
+
+body .ld-table tr:last-child td {
+    border-bottom: none;
+}
+
+body .ld-col-right {
+    text-align: right;
+    font-weight: 700;
+    color: var(--ld-color-2);
+}
+
+body .ld-hint {
+    margin: 18px 0 0;
+    font-size: .9rem;
+    opacity: .85;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* --- NEUE, ÜBERARBEITETE RESPONSIVE ANPASSUNGEN --- */
+@media (max-width: 768px) {
+
+    body .ld-pricing {
+        padding: 30px 15px;
+    }
+
+    /* 1. Äußeren Neon-Rahmen für Mobilgeräte "neutralisieren" */
+    body .ld-neon {
+        border: none; /* Keinen sichtbaren Rahmen */
+        padding: 0; /* Kein Innenabstand */
+        background: transparent; /* Keinen Hintergrund */
+    }
+
+    /* 2. Äußeres Leuchten für Mobilgeräte ausblenden */
+    body .ld-neon::before {
+        opacity: 0;
+    }
+
+    /* 3. Tabellenkopf verstecken */
+    body .ld-table thead {
+        display: none;
+    }
+
+    /* 4. JEDE Tabellenzeile wird zur NEON-KARTE */
+    body .ld-table tr {
+        display: block;
+        margin-bottom: 35px; /* Mehr Abstand zwischen den leuchtenden Karten */
+        padding: 15px;
+        position: relative; /* Wichtig für den neuen ::before Leuchteffekt */
+        z-index: 2;
+
+        /* Der Neon-Rahmen direkt auf der Karte */
+        border: 3px solid transparent;
+        border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
+        border-image-slice: 1;
+        border-radius: 4px; /* Leichte Abrundung */
+    }
+
+    /* 5. JEDE Karte bekommt ihren EIGENEN Leuchteffekt */
+    body .ld-table tr::before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+        inset: -10px; /* Abstand des Leuchtens */
+        border: 10px solid transparent;
+        border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
+        border-image-slice: 1;
+        filter: blur(10px); /* Etwas dezenteres Leuchten */
+        border-radius: 4px;
+    }
+
+    body .ld-table tr:last-child {
+        margin-bottom: 0;
+    }
+
+    /* 6. Zellen-Styling innerhalb der Karten */
+    body .ld-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0; /* Vertikaler Abstand, kein horizontaler */
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        text-align: right;
+    }
+
+    body .ld-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        opacity: .85;
+        text-align: left;
+        margin-right: 15px;
+    }
+
+    /* Titel der Karte (z.B. "1 Spiel") */
+    body .ld-table td:first-child {
+        font-weight: 700;
+        color: var(--ld-color-1);
+        justify-content: center; /* Zentriert den Inhalt */
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    body .ld-table td:first-child::before {
+        display: none;
+    }
+
+    body .ld-table tr td:last-child {
+        border-bottom: none;
+    }
+
+    body .ld-col-right {
+        text-align: right;
+    }
+}
+
+
+/**
+# Customizer CSS
+ */
+
+span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #9300FF, #02ffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+.light span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #9300FF, #02ffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    z-index: 1 !important;
+}
+
+.light_breakdance span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #FF00F3, #02FFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    z-index: 1 !important;
+}
+
+.light_geburtstag span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #00BFFF, #FF00F3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    z-index: 1 !important;
+}
+
+.light_lazertag span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #C7FB4D, #09C7FB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    z-index: 1 !important;
+}
+
+.light_lavafloor span.elementor-headline-dynamic-text.elementor-headline-text-active {
+    background: linear-gradient(90deg, #FF0032, #65FF0B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    z-index: 0 !important;
+
+}
+
+.divider_lazertag{
+    margin: 0em 0em 0em 0em;
+    background-color: transparent;
+    background-image: linear-gradient(135deg, #C7FB4D 0%, #09C7FB 100%);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0px 0px 40px 1px #09C7FB;
+}
+
+.divider_breakdance{
+    margin: 0em 0em 0em 0em;
+    background-color: transparent;
+    background-image: linear-gradient(135deg, #FF00F3 0%, #02FFFF 100%);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0px 0px 40px 1px #09C7FB;
+}
+
+.neon_glowing_button_effect a span:nth-child(1) {
+    z-index: 0 ;
+    animation: animate1 3s linear infinite !important;
+}
+
+
+
+.neon_glowing_button_effect a span:nth-child(2) {
+    z-index: 0 ;
+    animation: animate2 3s linear infinite !important;
+    animation-delay: 0.25s !important;
+}
+
+.neon_glowing_button_effect a span:nth-child(3) {
+    z-index: 0 ;
+    animation: animate3 3s linear infinite !important;
+    animation-delay: 0.50s !important;
+}
+
+.neon_glowing_button_effect a span:nth-child(4) {
+    z-index: 0 ;
+    animation: animate4 3s linear infinite !important;
+    animation-delay: 0.75s !important;
+}
+
+/*CSS End*/
+
+.page .nv-page-title {
+
+    display: none;
+
+}
+
+/** Start Block Kit CSS: 105-3-0fb64e69c49a8e10692d28840c54ef95 **/
+
+.envato-kit-102-phone-overlay {
+    position: absolute !important;
+    display: block !important;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    margin: auto;
+    z-index: 1;
+}
+
+/** End Block Kit CSS: 105-3-0fb64e69c49a8e10692d28840c54ef95 **/
+
+
+
+/** Start Block Kit CSS: 142-3-a175df65179b9ef6a5ca9f1b2c0202b9 **/
+
+.envato-block__preview{
+    overflow: visible;
+}
+
+/* Border Radius */
+.envato-kit-139-accordion .elementor-widget-container{
+    border-radius: 10px !important;
+}
+.envato-kit-139-map iframe,
+.envato-kit-139-slider .slick-slide,
+.envato-kit-139-flipbox .elementor-flip-box div{
+    border-radius: 10px !important;
+
+}
+
+
+/** End Block Kit CSS: 142-3-a175df65179b9ef6a5ca9f1b2c0202b9 **/
+
+
+
+/** Start Block Kit CSS: 69-3-4f8cfb8a1a68ec007f2be7a02bdeadd9 **/
+
+.envato-kit-66-menu .e--pointer-framed .elementor-item:before{
+    border-radius:1px;
+}
+
+.envato-kit-66-subscription-form .elementor-form-fields-wrapper{
+    position:relative;
+}
+
+.envato-kit-66-subscription-form .elementor-form-fields-wrapper .elementor-field-type-submit{
+    position:static;
+}
+
+.envato-kit-66-subscription-form .elementor-form-fields-wrapper .elementor-field-type-submit button{
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -webmit-transform: translate(0, -50%);
+}
+
+.envato-kit-66-testi-slider .elementor-testimonial__footer{
+    margin-top: -60px !important;
+    z-index: 99;
+    position: relative;
+}
+
+.envato-kit-66-featured-slider .elementor-slides .slick-prev{
+    width:50px;
+    height:50px;
+    background-color:#ffffff !important;
+    transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    left:-25px !important;
+    -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+    -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+}
+
+.envato-kit-66-featured-slider .elementor-slides .slick-prev:before{
+    display:block;
+    margin-top:0px;
+    margin-left:0px;
+    transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+}
+
+.envato-kit-66-featured-slider .elementor-slides .slick-next{
+    width:50px;
+    height:50px;
+    background-color:#ffffff !important;
+    transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    right:-25px !important;
+    -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+    -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.32);
+}
+
+.envato-kit-66-featured-slider .elementor-slides .slick-next:before{
+    display:block;
+    margin-top:-5px;
+    margin-right:-5px;
+    transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+}
+
+.envato-kit-66-orangetext{
+    color:#f4511e;
+}
+
+.envato-kit-66-countdown .elementor-countdown-label{
+    display:inline-block !important;
+    border:2px solid rgba(255,255,255,0.2);
+    padding:9px 20px;
+}
+
+/** End Block Kit CSS: 69-3-4f8cfb8a1a68ec007f2be7a02bdeadd9 **/
+
+
+
+/** Start Block Kit CSS: 72-3-34d2cc762876498c8f6be5405a48e6e2 **/
+
+.envato-block__preview{overflow: visible;}
+
+/*Kit 69 Custom Styling for buttons */
+.envato-kit-69-slide-btn .elementor-button,
+.envato-kit-69-cta-btn .elementor-button,
+.envato-kit-69-flip-btn .elementor-button{
+    border-left: 0px !important;
+    border-bottom: 0px !important;
+    border-right: 0px !important;
+    padding: 15px 0 0 !important;
+}
+.envato-kit-69-slide-btn .elementor-slide-button:hover,
+.envato-kit-69-cta-btn .elementor-button:hover,
+.envato-kit-69-flip-btn .elementor-button:hover{
+    margin-bottom: 20px;
+}
+.envato-kit-69-menu .elementor-nav-menu--main a:hover{
+    margin-top: -7px;
+    padding-top: 4px;
+    border-bottom: 1px solid #FFF;
+}
+/* Fix menu dropdown width */
+.envato-kit-69-menu .elementor-nav-menu--dropdown{
+    width: 100% !important;
+}
+
+/** End Block Kit CSS: 72-3-34d2cc762876498c8f6be5405a48e6e2 **/
+
+
+
+/** Start Block Kit CSS: 71-3-d415519effd9e11f35d2438c58ea7ebf **/
+
+.envato-block__preview{overflow: visible;}
+
+/** End Block Kit CSS: 71-3-d415519effd9e11f35d2438c58ea7ebf **/
+
+.wp-block-table thead {
+    border-bottom: 3px solid;
+    background: #55ffff;
+    border-color: #313130;
+    color: #000000;
+}
+.wp-block-table .has-fixed-layout {
+    table-layout: fixed;
+    width: 100%;
+}
+.wp-block-table td, .wp-block-table th {
+    border: 1px solid #535353 !important;
+    padding: .5em;
+}
+
+.wp-block-aab-group-accordion {
+    padding: 30px 30px 20px;
+    background: #333737;
+}
+
+.wp-block-aab-group-accordion .aagb__accordion_title {
+    font-size: 19px;
+    font-weight: 500 !important;
+    text-shadow: -1px 0px 0px #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+.wp-block-aab-group-accordion .aagb__accordion_head {
+    background: #9105FF;
+    background: linear-gradient(90deg, rgba(145, 5, 255, 1) 0%, rgb(44 248 255) 100%) !important;
+}
+
+.wp-block-aab-group-accordion .aagb__accordion_icon {
+    color: #000000 !important;
+}
+
+body .wp-block-aab-group-accordion .aagb__accordion_container.aagb__accordion_active {
+    border: none !important;
+}
+
+.wp-block-aab-group-accordion .wp-block-aab-accordion-item {
+    background: #000;
+}
+
+.wp-block-aab-accordion-item .aagb__accordion_head {
+    padding: 13px 22px 10px !important;
+}
+.wp-block-aab-accordion-item {
+    border-radius: 0 !important;
+}
+blockquote.wp-block-quote {
+    border-left: 5px solid #55ffff;
+    padding: 34px 30px 20px 40px;
+    margin: 0;
+    background: #363640;
+    margin-bottom: 30px;
+}
+
+@keyframes bgAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/**
+# Customizer CSS End
+ */
