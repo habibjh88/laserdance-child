@@ -5,7 +5,7 @@ Description: Hello Elementor Child is a child theme of Hello Elementor, created 
 Author: Elementor Team
 Author URI: https://elementor.com/
 Template: hello-elementor
-Version: 2.0.1
+Version: 2.0.4
 Text Domain: hello-elementor-child
 License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -30,6 +30,8 @@ body {
     --ld-bg: #0c0f13;
     --ld-text: #f9f9f9;
     --neon-border-width: 8px;
+    --neon-padding: 28px;
+    --neon-zindex: -1;
 }
 
 /* Hauptcontainer */
@@ -42,34 +44,44 @@ body .ld-pricing {
 }
 
 /* Neon-Rahmen (nur für Desktop) */
+body .elementor-posts .elementor-post__card {
+    overflow: inherit !important;
+}
+body .elementor-posts .elementor-post__card,
 body .ld-neon-border,
 body .ld-neon {
     margin: 0;
     position: relative;
-    padding: 28px;
+    padding: var(--neon-padding);
     background: var(--ld-bg);
     z-index: 2;
-    border: var(--neon-border-width) solid transparent;
-    border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
-    border-image-slice: 1;
+    border: var(--neon-border-width) solid transparent !important;
+    border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2)) !important;
+    border-image-slice: 1 !important;
 }
 
 /* Neon-Leuchten (nur für Desktop) */
+.elementor-posts .elementor-post__card::before,
 body .ld-neon-border::before,
 body .ld-neon::before {
     content: '';
     position: absolute;
-    z-index: -1;
+    z-index: var(--neon-zindex);
     pointer-events: none;
-    inset: -20px; /* Robuste Positionierung */
-    border: 22px solid transparent;
+    inset: calc(var(--neon-border-width) * -2.5) !important; /* Robuste Positionierung */
+    border: calc(var(--neon-border-width) * 3) solid transparent;
     border-image: linear-gradient(45deg, var(--ld-color-2), var(--ld-color-1), var(--ld-color-2));
     border-image-slice: 1;
     filter: blur(15px);
     opacity: 1; /* Sichtbar machen */
     transition: opacity 0.3s; /* Sanfter Übergang */
+    width: auto;
+    height: auto;
 }
 
+.elementor-posts .elementor-post__card {
+    padding: 0 !important;
+}
 /* Tabelle */
 body .ld-table {
     width: 100%;
