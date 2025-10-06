@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0' );
+define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.0.6' );
 
 /**
  * Load child theme scripts & styles.
@@ -31,6 +31,7 @@ function hello_elementor_child_scripts_styles() {
 		],
 		HELLO_ELEMENTOR_CHILD_VERSION
 	);
+	wp_enqueue_script('hello-elementor-child-script', get_stylesheet_directory_uri() . '/assets/scripts.js', ['jquery'], HELLO_ELEMENTOR_CHILD_VERSION, true);
 
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
